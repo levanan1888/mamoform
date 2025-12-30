@@ -62,13 +62,14 @@
         }
 
         .left-panel img {
-            max-width: 95%;
-            max-height: 90vh;
+            max-width: 100%;
+            max-height: 95vh;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
             position: relative;
             z-index: 1;
+            transform: scale(1.15); /* Enlarge logo specifically */
         }
 
         .right-panel {
@@ -323,7 +324,21 @@
                 <h2>ĐĂNG KÝ THAM DỰ</h2>
                 <p>Vui lòng điền thông tin để xác nhận chỗ ngồi</p>
 
-                <form action="#" method="POST">
+                @if(session('success'))
+                    <div
+                        style="background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 20px; font-size: 13px; margin-bottom: 20px; text-align: center;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div
+                        style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 20px; font-size: 13px; margin-bottom: 20px; text-align: center;">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('register.event') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label>Họ và tên</label>
